@@ -14,7 +14,7 @@
 size = Vector2(200, 1000)
 
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(1224, 200)
+size = Vector2(1357, 200)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("4")
@@ -46,7 +46,7 @@ script = ExtResource("6")
 [node name="ColorRect" type="ColorRect" parent="Wall_Container/Wall_Top"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Container/Wall_Top"]
-position = Vector2(512, -90)
+position = Vector2(578.5, -90)
 shape = SubResource("2")
 
 [node name="Brick_Container" type="Node2D" parent="."]
