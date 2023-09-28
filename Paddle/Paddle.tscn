@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmwf8wjdir6y5"]
+[gd_scene load_steps=4 format=3 uid="uid://dmwf8wjdir6y5"]
 
 [ext_resource type="Script" path="res://Paddle/Paddle.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c8ncql6woi0bx" path="res://Assets/bubble.png" id="2_20jh1"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(100, 20)
@@ -19,3 +20,9 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("1")
 
 [node name="Powerups" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 20
+one_shot = true
+texture = ExtResource("2_20jh1")
