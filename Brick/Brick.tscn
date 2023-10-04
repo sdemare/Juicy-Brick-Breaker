@@ -1,12 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjvdmnbj44w6x"]
+[gd_scene load_steps=7 format=3 uid="uid://bjvdmnbj44w6x"]
 
 [ext_resource type="Script" path="res://Brick/Brick.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c8ncql6woi0bx" path="res://Assets/bubble.png" id="2_xnajr"]
+[ext_resource type="Curve" path="res://Brick" id="3_ytbw2"]
+
+[sub_resource type="Gradient" id="Gradient_87jbk"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_x2xhk"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0135281, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(90, 30)
 
 [node name="Brick" type="StaticBody2D"]
 script = ExtResource("1")
+
+[node name="Confetti" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.5
+texture = ExtResource("2_xnajr")
+emission_shape = 3
+emission_rect_extents = Vector2(45, 15)
+direction = Vector2(2.08165e-12, 2.08165e-12)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 50.0
+initial_velocity_max = 300.0
+scale_amount_min = 0.0
+scale_amount_curve = ExtResource("3_ytbw2")
+color_ramp = SubResource("Gradient_87jbk")
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_x2xhk")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -45.0

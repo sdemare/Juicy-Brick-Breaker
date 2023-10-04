@@ -1,5 +1,8 @@
 extends Node2D
 
+var margin = Vector2(160,105)
+var index = Vector2(100,40)
+
 
 func _ready():
 	if Global.level < 0 or Global.level >= len(Levels.levels):
@@ -7,8 +10,8 @@ func _ready():
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		var level = Levels.levels[Global.level]
-		var margin = level["layout_start"]
-		var index = level["layout_spacing"]
+		#var margin = level["layout_start"]
+		#var index = level["layout_spacing"]
 		var layout = level["layout"]
 		var Brick_Container = get_node_or_null("/root/Game/Brick_Container")
 		Global.time = level["timer"]
