@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ei3ny6s8bla5"]
+[gd_scene load_steps=3 format=3 uid="uid://ei3ny6s8bla5"]
 
 [ext_resource type="Script" path="res://UI/Main_Menu.gd" id="1"]
+
+[sub_resource type="Theme" id="Theme_xyieq"]
+Label/fonts/font = null
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -9,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_xyieq")
 script = ExtResource("1")
 
 [node name="Background" type="ColorRect" parent="."]

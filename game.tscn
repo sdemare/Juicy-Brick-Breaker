@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bd5m3yq1k5fx8"]
+[gd_scene load_steps=16 format=3 uid="uid://bd5m3yq1k5fx8"]
 
 [ext_resource type="Script" path="res://Brick/Brick_Container.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dmwf8wjdir6y5" path="res://Paddle/Paddle.tscn" id="2"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://do7pdpjxteg8e" path="res://UI/HUD.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://r1nm10jeqyta" path="res://UI/Instructions.tscn" id="8"]
 [ext_resource type="Script" path="res://Effects/Fever.gd" id="9"]
+[ext_resource type="AudioStream" uid="uid://mnka0rc7ebgo" path="res://Assets/music.mp3" id="10_c3kw2"]
+[ext_resource type="AudioStream" uid="uid://ok8pcqmg8g30" path="res://Assets/Paddle.wav" id="10_mev6n"]
+[ext_resource type="AudioStream" uid="uid://cugx71nw3m4vb" path="res://Assets/wall.wav" id="11_csp45"]
+[ext_resource type="AudioStream" uid="uid://dm6l75trfyu0y" path="res://Assets/brick.wav" id="12_pyebp"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(200, 1000)
@@ -75,6 +79,7 @@ script = ExtResource("3")
 [node name="Powerup_Container" type="Node2D" parent="."]
 
 [node name="Fever" type="Node2D" parent="."]
+visible = false
 script = ExtResource("9")
 
 [node name="Timer" type="Timer" parent="Fever"]
@@ -91,5 +96,18 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Instructions" parent="UI" instance=ExtResource("8")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_c3kw2")
+autoplay = true
+
+[node name="Paddle_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_mev6n")
+
+[node name="Wall_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_csp45")
+
+[node name="Brick_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_pyebp")
 
 [connection signal="timeout" from="Fever/Timer" to="Fever" method="_on_Timer_timeout"]

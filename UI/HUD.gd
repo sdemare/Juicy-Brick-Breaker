@@ -27,8 +27,8 @@ func update_time():
 	$Time.text = "Time: " + str(Global.time)
 
 func update_lives():
-	if tween: tween.kill()
-	if tween2: tween2.kill()
+#	if tween: tween.kill()
+#	if tween2: tween2.kill()
 	var indicator_pos = Vector2(indicator_margin.x, Global.VP.y - indicator_margin.y)
 	for i in $Indicator_Container.get_children():
 		i.queue_free()
@@ -36,7 +36,7 @@ func update_lives():
 		var indicator = Indicator.instantiate()
 		indicator.position = Vector2(indicator_pos.x + i*indicator_index, indicator_pos.y)
 		$Indicator_Container.add_child(indicator)
-	breathe()
+#	breathe()
 
 func breathe():
 	indicator_scale = indicator_scale_target if indicator_scale == indicator_scale_start else indicator_scale_start

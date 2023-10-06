@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjvdmnbj44w6x"]
+[gd_scene load_steps=6 format=3 uid="uid://bjvdmnbj44w6x"]
 
 [ext_resource type="Script" path="res://Brick/Brick.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c8ncql6woi0bx" path="res://Assets/bubble.png" id="2_xnajr"]
-[ext_resource type="Curve" path="res://Brick" id="3_ytbw2"]
 
 [sub_resource type="Gradient" id="Gradient_87jbk"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -32,7 +31,6 @@ gravity = Vector2(2.08165e-12, 2.08165e-12)
 initial_velocity_min = 50.0
 initial_velocity_max = 300.0
 scale_amount_min = 0.0
-scale_amount_curve = ExtResource("3_ytbw2")
 color_ramp = SubResource("Gradient_87jbk")
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_x2xhk")

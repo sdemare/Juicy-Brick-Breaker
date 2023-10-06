@@ -1,12 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmwf8wjdir6y5"]
+[gd_scene load_steps=8 format=3 uid="uid://dmwf8wjdir6y5"]
 
 [ext_resource type="Script" path="res://Paddle/Paddle.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://c8ncql6woi0bx" path="res://Assets/bubble.png" id="2_20jh1"]
+[ext_resource type="Texture2D" uid="uid://cn0bj46qamkin" path="res://Assets/confetti.png" id="2_jm8li"]
 [ext_resource type="Texture2D" uid="uid://bdxnulvtgk1w4" path="res://Assets/paddleBlu.png" id="3_7kcjb"]
 [ext_resource type="Texture2D" uid="uid://cwc5jbpskx42f" path="res://Assets/paddleRed.png" id="4_6yxhr"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(50, 10)
+size = Vector2(100, 20)
+
+[sub_resource type="Curve" id="Curve_lffo2"]
+max_value = 255.0
+_data = [Vector2(0.00399088, 0.976451), 0.0, 0.0, 0, 0, Vector2(0.987742, 0.362359), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5oqwl"]
+min_value = -1.0
+_data = [Vector2(0.00674649, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Paddle" type="CharacterBody2D"]
 script = ExtResource("1")
@@ -18,18 +28,28 @@ shape = SubResource("1")
 [node name="Powerups" type="Node2D" parent="."]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(50, -10)
 emitting = false
-amount = 20
+amount = 6
+lifetime = 0.5
 one_shot = true
-texture = ExtResource("2_20jh1")
+explosiveness = 0.7
+randomness = 1.0
+texture = ExtResource("2_jm8li")
+direction = Vector2(2.08165e-12, -1)
+spread = 25.0
+initial_velocity_min = 200.0
+initial_velocity_max = 800.0
+angular_velocity_max = 800.0
+scale_amount_curve = SubResource("Curve_lffo2")
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_5oqwl")
 
 [node name="Paddle" type="Sprite2D" parent="."]
 position = Vector2(50, 10)
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_7kcjb")
 
 [node name="Highlight" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(50, 10)
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_6yxhr")

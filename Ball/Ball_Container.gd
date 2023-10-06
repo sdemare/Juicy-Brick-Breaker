@@ -10,9 +10,9 @@ func _physics_process(_delta):
 	if get_child_count() == 0:
 		Global.update_lives(-1)
 		Global.update_fever(-Global.fever)
-		#var camera = get_node_or_null("/root/Game/Camera")
-		#if camera != null:
-		#	camera.add_trauma(3.0)
+		var camera = get_node_or_null("/root/Game/Camera")
+		if camera != null:
+			camera.add_trauma(3.0)
 		make_ball()
 
 func make_ball():
@@ -26,8 +26,7 @@ func make_ball():
 	add_child(ball)
 	
 
-#func make_ball_fever():
+func make_ball_fever():
 #	var ball = Ball.instantiate()
 #	ball.global_position = Vector2(randf() * (Global.VP.x - 50) + 50, Global.VP.y - 110)
-#	var direction = Ve
-#	add_child(ball)
+#	var direction = Vector2.add_child(ball)

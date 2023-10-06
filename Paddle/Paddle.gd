@@ -11,7 +11,7 @@ var tween
 
 func _ready():
 	width = $CollisionShape2D.get_shape().size.x
-	width_default = width
+#	width_default = width
 	target = Vector2(Global.VP.x / 2, Global.VP.y - 80)
 
 func _physics_process(_delta):
@@ -27,6 +27,8 @@ func _input(event):
 		target.x += event.relative.x
 
 func hit(_ball):
+	var Paddle_Sound = get_node("/root/Game/Paddle_Sound")
+	Paddle_Sound.play()
 	$Highlight.modulate.a = 1.0
 	$Confetti.emitting = true
 	if tween:
