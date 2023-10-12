@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd5m3yq1k5fx8"]
+[gd_scene load_steps=18 format=3 uid="uid://bd5m3yq1k5fx8"]
 
 [ext_resource type="Script" path="res://Brick/Brick_Container.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dmwf8wjdir6y5" path="res://Paddle/Paddle.tscn" id="2"]
+[ext_resource type="Shader" path="res://Effects/Background.gdshader" id="2_2ebae"]
 [ext_resource type="Script" path="res://Ball/Ball_Container.gd" id="3"]
 [ext_resource type="Script" path="res://Game.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://ci5q3vmuimsfr" path="res://UI/Pause_Menu.tscn" id="5"]
@@ -14,6 +15,13 @@
 [ext_resource type="AudioStream" uid="uid://cugx71nw3m4vb" path="res://Assets/wall.wav" id="11_csp45"]
 [ext_resource type="AudioStream" uid="uid://dm6l75trfyu0y" path="res://Assets/brick.wav" id="12_pyebp"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xme78"]
+shader = ExtResource("2_2ebae")
+shader_parameter/TWOPI = 6.28319
+shader_parameter/NUM_EXPLOSIONS = 8.0
+shader_parameter/NUM_PARTICLES = 70.0
+shader_parameter/MOD3 = Vector3(0.1031, 0.11369, 0.13787)
+
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(200, 1000)
 
@@ -22,6 +30,11 @@ size = Vector2(1357, 200)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("4")
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_xme78")
+offset_right = 1155.0
+offset_bottom = 801.0
 
 [node name="Wall_Container" type="Node2D" parent="."]
 
@@ -92,8 +105,6 @@ visible = false
 [node name="Pause_Menu" parent="UI" instance=ExtResource("5")]
 process_mode = 3
 visible = false
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Instructions" parent="UI" instance=ExtResource("8")]
 

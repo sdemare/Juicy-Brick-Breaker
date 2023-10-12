@@ -37,12 +37,12 @@ func _physics_process(_delta):
 	else:
 		color_rotate_index = 0.1
 	sway_index += sway_period
-#	if fever >= 100 and not feverish:
-#		fever = 100
-#	elif fever > 0:
-#		update_fever(-fever_decay)
-#	else:
-#		feverish = false
+	if fever >= 100 and not feverish:
+		fever = 100
+	elif fever > 0:
+		update_fever(-fever_decay)
+	else:
+		feverish = false
 
 
 func _unhandled_input(event):
@@ -59,11 +59,11 @@ func _unhandled_input(event):
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				get_tree().paused = true
 				Pause_Menu.show()
-#	if fever >= 100 and event.is_action_pressed("fever"):
-#		var Fever = get_node_or_null("/root/Game/Fever")
-#		if Fever != null:
-#			feverish = true
-#			Fever.start_fever()
+	if fever >= 100 and event.is_action_pressed("fever"):
+		var Fever = get_node_or_null("/root/Game/Fever")
+		if Fever != null:
+			feverish = true
+			Fever.start_fever()
 
 func _resize():
 	VP = get_viewport().size
@@ -88,11 +88,11 @@ func update_lives(l):
 	if lives <= 0:
 		end_game(false)
 
-#func update_fever(f):
-#	fever += f * fever_multiplier
-#	var HUD = get_node_or_null("/root/Game/UI/HUD")
-#	if HUD != null:
-#		HUD.update_fever()
+func update_fever(f):
+	fever += f * fever_multiplier
+	var HUD = get_node_or_null("/root/Game/UI/HUD")
+	if HUD != null:
+		HUD.update_fever()
 
 func update_time(t):
 	time += t
@@ -104,7 +104,7 @@ func update_time(t):
 
 func next_level():
 	level += 1
-#	fever = 0
+	fever = 0
 	get_tree().change_scene_to_file("res://Game.tscn")
 
 func end_game(success):

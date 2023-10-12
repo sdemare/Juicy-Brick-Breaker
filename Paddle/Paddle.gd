@@ -7,11 +7,12 @@ var width_default = 0
 var decay = 0.02
 var time_highlight = 0.4
 var time_highlight_size = 0.3
+
 var tween
 
 func _ready():
 	width = $CollisionShape2D.get_shape().size.x
-#	width_default = width
+	width_default = width
 	target = Vector2(Global.VP.x / 2, Global.VP.y - 80)
 
 func _physics_process(_delta):
@@ -19,8 +20,22 @@ func _physics_process(_delta):
 	position = target
 	for c in $Powerups.get_children():
 		c.payload()
-	if $Highlight.modulate.a > 0:
-		$Highlight.modulate.a -= decay
+	var ball_container = get_node_or_null("/root/Game/Ball_Container")
+	if ball_container != null and ball_container.get_child_count() > 0:
+		var ball = ball_container.get_child(0)
+		$Eye1/Pupil/Sprite.position.x = 7
+		$Eye2/Pupil/Sprite.position.x = 7
+		$Eye1/Pupil.look_at(ball.position)
+		$Eye2/Pupil.look_at(ball.position)
+		var d = ((($Mouth.global_position.y - ball.global_position.y)/Global.VP.y)-0.2)*2
+		d = clamp(d, -1, 1)
+		$Mouth.scale.y = d
+	else:
+		$Eye1/Pupil/Sprite.position.x = 0
+		$Eye2/Pupil/Sprite.position.x = 0
+		$Mouth.scale.y = 1
+#	if $Highlight.modulate.a > 0:
+#		$Highlight.modulate.a -= decay
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -29,7 +44,7 @@ func _input(event):
 func hit(_ball):
 	var Paddle_Sound = get_node("/root/Game/Paddle_Sound")
 	Paddle_Sound.play()
-	$Highlight.modulate.a = 1.0
+#	$Highlight.modulate.a = 1.0
 	$Confetti.emitting = true
 	if tween:
 		tween.kill()

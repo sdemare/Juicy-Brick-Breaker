@@ -13,11 +13,18 @@ var indicator_scale_target = Vector2(1.5,1.5)
 var tween
 var tween2
 
+var fever_h = 0.0
+var fever_s = 0.0
+var fever_v = 0.0
+
 func _ready():
 	update_score()
 	update_time()
 	update_lives()
-#	update_fever()
+	update_fever()
+	fever_h = 0.0
+	fever_s = 0.78
+	fever_v = 0.88
 
 
 func update_score():
@@ -50,8 +57,8 @@ func breathe():
 	tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_callback(self.breathe)
 
-#func update_fever():
-#	$Fever.value = Global.fever
+func update_fever():
+	$Fever.value = Global.fever
 
 func _on_Timer_timeout():
 	Global.update_time(-1)

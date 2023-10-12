@@ -11,8 +11,9 @@ var time_s = 1.2
 var time_v = 1.5
 
 var sway_amplitude = 3.0
-var sway_initial_position = Vector2.ZERO
-var sway_randomizer = Vector2.ZERO
+
+var color_initial_position = Vector2.ZERO
+var color_randomizer = Vector2.ZERO
 
 var color_index = 0
 var color_distance = 0
@@ -20,19 +21,19 @@ var color_rotate = 0
 var color_rotate_index = 0
 var color_completed = true
 
-var tween
+var tween = null
 
 var powerup_prob = 0.1
 
 var colors = [
-	Color8(132,94,247,255)
-	,Color8(132,94,247,255)
-	,Color8(132,94,247,255)
-	,Color8(132,94,247,255)
-	,Color8(132,94,247,255)
-	,Color8(132,94,247,255)
-	,Color8(132,94,247,255)
-	,Color8(132,94,247,255)
+	Color8(224,49,49,255) #red
+	,Color8(255,212,59,255) #yellow
+	,Color8(148,216,45,255) #green
+	,Color8(34,139,230,255) #blue
+	,Color8(34,139,230,255) #blue
+	,Color8(148,216,45,255) #green
+	,Color8(255,212,59,255) #yellow
+	,Color8(224,49,49,255) #red
 ]
 
 func _ready():
@@ -41,6 +42,7 @@ func _ready():
 #	process_mode = Node.PROCESS_MODE_ALWAYS
 	position.x = new_position.x
 	position.y = -100
+	position = Vector2(new_position.x, -100)
 	tween = create_tween()
 	tween.tween_property(self, "position", new_position, 0.5 + randf()*2).set_trans(Tween.TRANS_BOUNCE)
 	if score >= 100: color_index = 0
@@ -52,8 +54,8 @@ func _ready():
 	elif score >= 40: color_index = 6
 	else: color_index = 7
 	$ColorRect.color = colors[color_index]
-	sway_initial_position = $ColorRect.position
-	sway_randomizer = Vector2(randf()*6-3.0, randf()*6-3.0)
+	color_initial_position = $ColorRect.position
+	color_randomizer = Vector2(randf()*6-3.0, randf()*6-3.0)
 
 func _physics_process(_delta):
 	if dying and not $Confetti.emitting and not tween:
@@ -66,9 +68,9 @@ func _physics_process(_delta):
 		elif not color_completed:
 			$ColorRect.color = colors[color_index]
 			color_completed = true
-	var pos_x = (sin(Global.sway_index)*(sway_amplitude + sway_randomizer.x))
-	var pos_y = (cos(Global.sway_index)*(sway_amplitude + sway_randomizer.y))
-	$ColorRect.position = Vector2(sway_initial_position.x + pos_x, sway_initial_position.y + pos_x)
+	var pos_x = (sin(Global.sway_index)*(sway_amplitude + color_randomizer.x))
+	var pos_y = (cos(Global.sway_index)*(sway_amplitude + color_randomizer.y))
+	$ColorRect.position = Vector2(color_initial_position.x + pos_x, color_initial_position.y + pos_x)
 
 func hit(_ball):
 	Global.color_rotate = Global.color_rotate_amount
@@ -94,10 +96,10 @@ func die():
 	tween.tween_property($ColorRect, "color:a", 0, time_a)
 	tween.tween_property($ColorRect, "color:s", 0, time_s)
 	tween.tween_property($ColorRect, "color:v", 0, time_v)
-#	if randf() < powerup_prob:
-#		var Powerup_Container = get_node_or_null("/root/Game/Powerup_Container")
-#		if Powerup_Container != null:
-#			var Powerup = load("res://Powerups/Powerup.tscn")
-#			var powerup = Powerup.instantiate()
-#			powerup.position = position
-#			Powerup_Container.call_deferred("add_child", powerup)
+	if randf() < powerup_prob:
+		var Powerup_Container = get_node_or_null("/root/Game/Powerup_Container")
+		if Powerup_Container != null:
+			var Powerup = load("res://Powerups/Powerup.tscn")
+			var powerup = Powerup.instantiate()
+			powerup.position = position
+			Powerup_Container.call_deferred("add_child", powerup)

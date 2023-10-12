@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmwf8wjdir6y5"]
+[gd_scene load_steps=11 format=3 uid="uid://dmwf8wjdir6y5"]
 
 [ext_resource type="Script" path="res://Paddle/Paddle.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cn0bj46qamkin" path="res://Assets/confetti.png" id="2_jm8li"]
 [ext_resource type="Texture2D" uid="uid://bdxnulvtgk1w4" path="res://Assets/paddleBlu.png" id="3_7kcjb"]
 [ext_resource type="Texture2D" uid="uid://cwc5jbpskx42f" path="res://Assets/paddleRed.png" id="4_6yxhr"]
+[ext_resource type="Texture2D" uid="uid://scejyljc3w1u" path="res://Assets/Eye.png.png" id="5_8m6w8"]
+[ext_resource type="Texture2D" uid="uid://dl7rjadp54egg" path="res://Assets/Pupil.png" id="6_omx5s"]
+[ext_resource type="Texture2D" uid="uid://dir6oklwnvqgv" path="res://Assets/Mouth.png" id="7_ynvik"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(100, 20)
@@ -53,3 +56,25 @@ texture = ExtResource("3_7kcjb")
 modulate = Color(1, 1, 1, 0)
 position = Vector2(50, 10)
 texture = ExtResource("4_6yxhr")
+
+[node name="Eye1" type="Sprite2D" parent="."]
+position = Vector2(23, -7)
+texture = ExtResource("5_8m6w8")
+
+[node name="Pupil" type="Node2D" parent="Eye1"]
+
+[node name="Sprite" type="Sprite2D" parent="Eye1/Pupil"]
+texture = ExtResource("6_omx5s")
+
+[node name="Eye2" type="Sprite2D" parent="."]
+position = Vector2(73, -7)
+texture = ExtResource("5_8m6w8")
+
+[node name="Pupil" type="Node2D" parent="Eye2"]
+
+[node name="Sprite" type="Sprite2D" parent="Eye2/Pupil"]
+texture = ExtResource("6_omx5s")
+
+[node name="Mouth" type="Sprite2D" parent="."]
+position = Vector2(49, 25)
+texture = ExtResource("7_ynvik")
